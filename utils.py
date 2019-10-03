@@ -17,38 +17,6 @@ def get_file_contents(*args: str) -> str:
         return ''.join(filecontent)
 
 
-class nl_factory:
-
-    def __init__(self, line_width, sys_new_line_character):
-
-        self.line_width = line_width
-        self.new_line_character = sys_new_line_character
-        self.char_count = 0
-        self.word_count = 0
-
-    def append_new_line(self, new_word: str):
-        temp_word = new_word[:]
-        self.word_count += 1
-        self.char_count += len(new_word) + 1
-        if self.char_count >= self.line_width:
-            temp_word = temp_word.strip()
-            temp_word += '\n'
-            self.char_count = 0
-        else:
-            temp_word += ' '
-        return temp_word
-
-    def append_new_line_dashed(self, new_word: str):
-        temp_word = []
-        self.word_count += 1
-        for char in temp_word:
-            self.char_count += 1
-        return temp_word
-
-    def get_word_count(self):
-        return self.word_count
-
-
 def get_bigram_count(frequency_count):
     count = 0
     for f in frequency_count:

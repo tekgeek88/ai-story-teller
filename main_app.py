@@ -1,4 +1,6 @@
 import os.path
+
+import text_writer_toolkit as twt
 import utils
 import trigram as t
 import random
@@ -11,8 +13,10 @@ SHERLOCK_01_FILENAME = "doyle-27.txt"
 SHERLOCK_02_FILENAME = "doyle-case-27.txt"
 ALL_TEXT_FILES =  glob.glob(PATH + "*.txt")
 
-# FILES = [PATH + SHERLOCK_01_FILENAME, PATH + SHERLOCK_02_FILENAME]
-FILES = ALL_TEXT_FILES
+
+# Uncomment only one of these lines to use all files or just sherlock 1 and 2
+FILES = [PATH + SHERLOCK_01_FILENAME, PATH + SHERLOCK_02_FILENAME]
+# FILES = ALL_TEXT_FILES
 
 if __name__ == '__main__':
     print("Training Language Model...")
@@ -78,7 +82,9 @@ if __name__ == '__main__':
 
     # Create a new line factory to generate either a white space or a newline
     # character as we append the words to the story
-    nl_factory = utils.nl_factory(65, '\n')
+    nl_factory = twt.nl_factory(65, '\n')
+    final_string = ""
     for word in story_so_far:
-        print(nl_factory.append_new_line(word), end='')
+        final_string += nl_factory.word_handler(word)
 
+    print(final_string)
